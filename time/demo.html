@@ -1,0 +1,446 @@
+﻿<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>翻转时钟</title>
+
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      width: 100%;
+      height: 100%;
+      background: url("./images/bg3.png") no-repeat;
+      background-size: 100% 100%;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #mright {
+      width: 65%;
+      float: left;
+      position: absolute;
+      left: 7%;
+      top: 2%;
+    }
+
+    #mright .wt {
+      float: left;
+      margin-top: 5px;
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      width: 24%;
+    }
+
+    .wtpic {
+      line-height: 25px;
+      height: 25px;
+      float: left;
+      width: 100%;
+
+    }
+
+    .img {
+      float: left;
+      width: 26%;
+      margin-top: -4%;
+      margin-right: 3%;
+    }
+
+    .text {
+      font-size: 14px;
+      margin-top: -2%;
+      text-align: left;
+    }
+
+    .img img {
+      border: 0;
+      margin: 0 5px;
+      width: 100%;
+      height: 100%;
+    }
+
+    #clock {
+      position: absolute;
+      top: 9%;
+      right: 4%;
+      margin: auto;
+      text-align: center;
+      width: 38%;
+      height: 100%;
+    }
+
+    .num {
+      position: relative;
+      display: inline-block;
+      width: 8%;
+      height: 79%;
+      font: 26px 'Roboto Slab', sans-serif;
+      color: #404040;
+      background: rgba(90, 90, 90, 1);
+      border: solid 2px #404040;
+      box-sizing: border-box;
+      border-radius: 5px;
+    }
+
+    .colon {
+      position: relative;
+      display: inline-block;
+      font: 27px 'Roboto Slab', sans-serif;
+      top: -23%;
+      color: #ccc;
+    }
+
+    .base span {
+      position: absolute;
+      display: block;
+      width: 100%;
+    }
+
+    .upper {
+      position: absolute;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(0deg, rgba(200, 200, 200, 1), rgba(255, 255, 255, 1) 15%);
+      border-radius: 7px 7px 0 0;
+      box-shadow: inset 0 1px 8px rgba(0, 0, 0, .1);
+      overflow: hidden;
+      border-bottom: solid 1px rgba(0, 0, 0, .5);
+      box-sizing: border-box;
+    }
+
+    .lower {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(200, 200, 200, 1), rgba(255, 255, 255, 1) 15%);
+      border-radius: 0 0 7px 7px;
+      box-shadow: inset 0 -3px 5px rgba(0, 0, 0, .2);
+      overflow: hidden;
+      border-top: solid 1px #ddd;
+      box-sizing: border-box;
+    }
+
+    .lower span {
+      position: relative;
+      top: -103%;
+    }
+
+    #header {
+      height: 8%;
+      width: 100%;
+      background: url(./images/bg4.png) no-repeat;
+      background-size: 100% 100%;
+      margin: auto;
+      position: relative;
+      /* top: 2%; */
+    }
+
+    .djhd {
+      width: 100%;
+      height: 30%;
+      border: 1px solid red;
+      box-sizing: border-box;
+    }
+
+    .xsjy {
+      width: 100%;
+      height: 30%;
+      border: 1px solid yellow;
+      box-sizing: border-box;
+    }
+
+    .Tab {
+      width: 97%;
+      height: 29%;
+      background: url(./images/bg2.png) no-repeat center;
+      background-size: 100% 100%;
+      box-sizing: border-box;
+      margin: auto;
+      margin-top: 1%;
+    }
+
+    #tab_t {
+      height: 15%;
+      padding: 0;
+      display: block;
+      width: 99%;
+      margin: auto;
+    }
+
+    ul#tab_t li {
+      float: left;
+      color: white;
+      display: inline-block;
+      width: 20%;
+      height: 50%;
+      text-align: center;
+      padding: 1% 0;
+      line-height: 100%;
+      margin-top: 0.7%;
+    }
+
+    .act {
+      width: 100%;
+      height: 100%;
+      background: url("./images/bg5.png") no-repeat;
+      background-size: 100% 100%;
+      color: #fff;
+      display: block;
+    }
+
+    #tab_c {
+      width: 99%;
+      height: 72%;
+      margin: auto;
+    }
+
+    #tab_c div {
+      width: 100%;
+      height: 100%;
+      color: white;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div id="header">
+      <div id="mright" class="mright">
+        <div name="wt" class="wt" id="day_1">
+          <div class="wt1">
+            <span class="wtpic">
+              <div class="img">
+                <img class="pngtqico" align="absmiddle" src="images/b0.png">
+              </div>
+              <div class="text">
+                <div>今天</div>
+                <div class="wtwt">32℃～14℃</div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div name="wt" class="wt" id="day_2">
+          <div class="wt1">
+            <span class="wtpic">
+              <div class="img"><img class="pngtqico" align="absmiddle" src="images/b0.png"></div>
+              <div class="text">
+                <div>明天</div>
+                <div class="wtwt">34℃～18℃</div>
+              </div>
+            </span>
+          </div>
+        </div>
+        <div name="wt" class="wt" id="day_3">
+          <div class="wt1">
+            <span class="wtpic">
+              <div class="img"><img class="pngtqico" align="absmiddle" src="images/b0.png"></div>
+              <div class="text">
+                <div>后天</div>
+                <div class="wtwt">36℃～21℃</div>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div id="clock">
+        <div id="h10" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+
+        <div id="h0" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+
+        <div class="colon">:</div>
+
+        <div id="m10" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+
+        <div id="m0" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+
+        <div class="colon">:</div>
+
+        <div id="s10" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+
+        <div id="s0" class="num">
+          <div class="upper"></div>
+          <div class="base upper"></div>
+          <div class="base lower"></div>
+          <div class="lower"></div>
+        </div>
+      </div>
+    </div>
+    <div class="djhd"></div>
+    <div class="xsjy"></div>
+    <div class="Tab">
+      <ul id="tab_t">
+        <li class="act">全部</li>
+        <li>党政动态</li>
+        <li>社会民生</li>
+        <li>宣传动态</li>
+        <li>城市建设</li>
+      </ul>
+      <div id="tab_c">
+        <div class="show">内容1</div>
+        <div class="hide">内容2</div>
+        <div class="hide">内容3</div>
+        <div class="hide">内容4</div>
+        <div class="hide">内容5</div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/TweenMax.min.js"></script>
+  <script>
+    ////////////////////////////////选项卡
+    tab("tab_t", "li", "tab_c", "div", "onmouseover")
+    function tab(tab_t, tab_t_tag, tab_c, tag_c_tag, evt) {
+      var tab_t = document.getElementById(tab_t);
+      var tab_t_li = tab_t.getElementsByTagName(tab_t_tag);
+      var tab_c = document.getElementById(tab_c);
+      var tab_c_li = tab_c.getElementsByTagName(tag_c_tag);
+      var len = tab_t_li.length;
+      var i = 0;
+      var timer = null;
+      var num = 0;
+      for (i = 0; i < len; i++) {
+        tab_t_li[i].index = i;
+        tab_t_li[i][evt] = function () {
+          clearInterval(timer);
+          num = this.index;
+          tab_change()
+        }
+        tab_t_li[i].onmouseout = function () {
+          autoplay();
+        }
+      }
+      function tab_change() {
+        for (i = 0; i < len; i++) {
+          tab_t_li[i].className = '';
+          tab_c_li[i].className = 'hide';
+        }
+        tab_t_li[num].className = 'act';
+        tab_c_li[num].className = '';
+      }
+      function autoplay() {
+        timer = setInterval(function () {
+          num++;
+          if (num >= len) num = 0;
+          tab_change();
+        }, 2000);
+      }
+      autoplay();
+    }
+
+
+////////////////////////////////// 时钟特效
+
+    // set 3d transforms
+    TweenMax.set("#clock", { perspective: 1500 })
+    TweenMax.set(".upper", { rotationX: 0.01, transformOrigin: "50% 100%" })
+    TweenMax.set(".lower", { rotationX: 0.01, transformOrigin: "50% 0%" })
+
+    // set clock
+    var t, ss, mm, hh;
+    setTimeVars();
+    function setTimeVars() {
+      t = new Date();
+      t = new Date();
+      ss = String(t.getSeconds());
+      mm = String(t.getMinutes());
+      hh = String((t.getHours() > 12) ? t.getHours() - 12 : t.getHours());
+      if (ss.length == 1) ss = "0" + ss;
+      if (mm.length == 1) mm = "0" + mm;
+      if (hh.length == 1) hh = "0" + hh;
+    }
+
+    h10.childNodes[3].innerHTML = h10.childNodes[7].innerHTML = "<span>" + Number(hh.substr(0, 1)) + "</span>";
+    h0.childNodes[3].innerHTML = h0.childNodes[7].innerHTML = "<span>" + Number(String(hh).substr(1, 1)) + "</span>";
+
+    m10.childNodes[3].innerHTML = m10.childNodes[7].innerHTML = "<span>" + Number(mm.substr(0, 1)) + "</span>";
+    m0.childNodes[3].innerHTML = m0.childNodes[7].innerHTML = "<span>" + Number(mm.substr(1, 1)) + "</span>";
+
+    s10.childNodes[3].innerHTML = s10.childNodes[7].innerHTML = "<span>" + Number(ss.substr(0, 1)) + "</span>";
+    s0.childNodes[3].innerHTML = s0.childNodes[7].innerHTML = "<span>" + Number(ss.substr(1, 1)) + "</span>";
+
+
+    // start ticking
+    var interval = setInterval(function () {
+      setTimeVars();
+      tick(s0, Number(ss.substr(1, 1)))
+
+      if (ss.substr(1, 1) == "9") {
+        tick(s10, Number(ss.substr(0, 1)))
+        if (ss == "59") {
+          tick(s10, 5, true)
+          tick(m0, Number(mm.substr(1, 1)))
+          if (mm.substr(1, 1) == "9") {
+            tick(m10, Number(mm.substr(0, 1)))
+            if (mm == "59") {
+              tick(m10, 5, true)
+              tick(h0, Number(hh.substr(1, 1)))
+              if (hh.substr(1, 1) == "9") tick(h10, Number(hh.substr(0, 1)))
+              if (hh == "12") {
+                tick(h0, Number(hh.substr(0, 1)), true)
+                tick(h10, Number(hh.substr(1, 1)), true)
+              }
+            }
+          }
+        }
+      }
+
+    }, 1000)
+
+    function tick(mc, i, toZero = false) {
+      // set numbers
+      mc.childNodes[3].innerHTML = "<span>" + i + "</span>"; //start upper
+      mc.childNodes[5].innerHTML = "<span>" + i + "</span>"; //start lower
+      if (i == 9 || toZero) i = -1;
+      mc.childNodes[1].innerHTML = "<span>" + (i + 1) + "</span>"; //end upper
+      mc.childNodes[7].innerHTML = "<span>" + (i + 1) + "</span>"; //end lower
+      // animate tick
+      TweenMax.fromTo(mc.childNodes[1], .3, { alpha: 0 }, { alpha: 1, ease: Power4.easeIn })
+      TweenMax.fromTo(mc.childNodes[3], .3, { rotationX: 0, background: "linear-gradient(0deg, rgba(200,200,200,1), rgba(255,255,255,1) 15%)" }, { rotationX: -90, ease: Power1.easeIn })
+      TweenMax.fromTo(mc.childNodes[7], .5 + .2 * Math.random(), { rotationX: 90 }, { rotationX: 0, ease: Bounce.easeOut, delay: .3 })
+      TweenMax.fromTo(mc.childNodes[5], .6, { alpha: 1 }, { alpha: 0, ease: Bounce.easeOut, delay: .3 })
+    }
+  </script>
+
+</body>
+
+</html>

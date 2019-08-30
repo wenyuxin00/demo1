@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>北京天气预报代码调用</title>
+    <style>
+        body{
+            color: #fff;
+           
+        }
+        #mright {
+            background-color: #07195F;
+            width: 100%;
+            float: left;
+        }
+
+        #mright .wt {
+            float: left;
+            margin-top: 5px;
+            margin-right: 3%;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .wtpic {
+            line-height: 25px;
+            height: 25px;
+            float: left;
+            width: 100%;
+
+        }
+
+        .img {
+            float: left;
+        }
+
+        .img img {
+            border: 0;
+            width: 50px;
+            height: 50px;
+            margin: 0 5px;
+        }
+        #h {
+            font-size: 52px;
+        }
+
+        #m {
+            font-size: 38px;
+            vertical-align: super;
+        }
+
+        #s {
+            font-size: 26px;
+        }
+        .point{
+            font-size: 32px;
+            vertical-align: super;
+        }
+    </style>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+    <div id="mright" class="mright">
+        <div name="wt" class="wt" id="day_1">
+            <div class="wt1">
+                <span class="wtpic">
+                    <div class="img">
+                        <img class="pngtqico" align="absmiddle" src="images/b0.png">
+                    </div>
+                    <div class="text" style="float:right">
+                        <div>今天</div>
+                        <div class="wtwt">32℃～14℃</div>
+                    </div>
+                    
+                </span>
+            </div>
+        </div>
+        <div name="wt" class="wt" id="day_2">
+            <div class="wt1">
+                <span class="wtpic">
+                    <div class="img"><img class="pngtqico" align="absmiddle" src="images/b0.png"></div>
+                    <div class="text" style="float:right">
+                            <div>今天</div>
+                            <div class="wtwt">34℃～18℃</div>
+                        </div>
+                </span>
+            </div>
+        </div>
+        <div name="wt" class="wt" id="day_3">
+            <div class="wt1">
+                <span class="wtpic">
+                    <div class="img"><img class="pngtqico" align="absmiddle" src="images/b0.png"></div> 
+                    <div class="text" style="float:right">
+                            <div>今天</div>
+                            <div class="wtwt">36℃～21℃</div>
+                        </div>
+                </span>
+            </div>
+        </div>
+        <div id="nowtime">
+                <span id="h"></span>
+                <span class="point">:</span>
+                <span id="m"></span>
+                <span id="s"></span>
+        </div>
+    </div>
+  
+    <script>
+        function NowTime() {
+            //获取年月日
+            var time = new Date();
+            //获取时分秒
+            var h = time.getHours();
+            var m = time.getMinutes();
+            var s = time.getSeconds();
+
+            //检查是否小于10
+            h = check(h);
+            m = check(m);
+            s = check(s);
+            document.getElementById("h").innerHTML = h ;
+            document.getElementById("m").innerHTML = m;
+            document.getElementById("s").innerHTML = s;
+        }
+        //时间数字小于10，则在之前加个“0”补位。
+        function check(i) {
+            //方法一，用三元运算符
+            var num;
+            i < 10 ? num = "0" + i : num = i;
+            return num;
+        }
+        setInterval("NowTime()", 1000);
+    </script>
+</body>
+
+</html>

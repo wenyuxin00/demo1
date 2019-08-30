@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab {}
+
+        li {
+            list-style: none;
+            float: left;
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        #tab_c div {
+            width: 408px;
+            height: 200px;
+            background: blanchedalmond;
+            display: none;
+        }
+
+        #tab div.hide {
+            display: none;
+        }
+
+        #tab div.show {
+            display: block;
+        }
+
+        .act {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tab">
+        <ul id="tab_t">
+            <li class="act">标题一</li>
+            <li>标题二</li>
+            <li>标题三</li>
+            <li>标题四</li>
+        </ul>
+        <div id="tab_c">
+            <div class="show">内容一</div>
+            <div>内容二</div>
+            <div>内容三</div>
+            <div>内容四</div>
+        </div>
+    </div>
+
+    <script>
+        // $("#tab_t li").click(function(){
+        //   $("#tab_c div").eq($(this).index()).addClass("show").siblings().removeClass("show");
+        //   $(this).addClass("act").siblings().removeClass("act");
+        // })
+        var tabT = document.querySelectorAll("#tab_t li");
+        var tabC = document.querySelectorAll("#tab_c div");
+        for (i = 0; i < tabT.length; i++) {
+            tabT[i].index = i;
+            tabT[i].onclick = function () {
+                for (i = 0; i < tabT.length; i++) {
+                    tabT[i].className = '';
+                    tabC[i].className = 'hide';
+                }
+                tabT[this.index].className = 'act';
+                tabC[this.index].className = 'show';
+            }
+        }
+    </script>
+</body>
+
+</html>
